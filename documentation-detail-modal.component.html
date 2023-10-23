@@ -1,0 +1,35 @@
+<app-header-modal [title]="'Detalles de la documentación'"></app-header-modal>
+<ion-content class="modal-container"
+             *ngIf="url.type === 'image/png' || url.type === 'image/jpg' || url.type === 'image/webp'|| url.type === 'image/jpeg'">
+  <ion-img class="object-fit-contain img" [src]="url.src"></ion-img>
+</ion-content>
+<ion-content class="modal-container" *ngIf="url.type === 'video/mp4'" >
+  <video class="video"  controls>
+    <source [src]="url.src" type="video/mp4" />
+  </video>
+</ion-content>
+<ion-content class=" modal-container" *ngIf="url.type === 'application/pdf'">
+  <pdf-viewer
+    [src]="url.src"
+    [rotation]="0"
+    [original-size]="false"
+    [show-all]="true"
+    [fit-to-page]="false"
+    [zoom]="1"
+    [zoom-scale]="'page-width'"
+    [stick-to-page]="false"
+    [render-text]="true"
+    [external-link-target]="'blank'"
+    [autoresize]="true"
+    [show-borders]="false"></pdf-viewer>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-text>Descripcion detallada del fichero y comentarios</ion-text>
+  </ion-toolbar>
+
+</ion-footer>
+
+
+

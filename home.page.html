@@ -1,0 +1,31 @@
+<ion-footer style="min-height: auto">
+  <ion-row class="">
+    <ion-item class="w-100">
+      <ion-text>Documentación</ion-text>
+      <ion-icon name="create-outline" size="large" slot="end" color="secondary"></ion-icon>
+      <input type="file" accept="image/*, .pdf, .mp4" (change)="addFile($event)" multiple hidden #fileInput>
+      <ion-button fill="clear" slot="end" (click)="fileInput.click()">
+        <ion-icon name="add" size="large" color="secondary"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-col size-xl="2" size-md="4" size-sm="4" size-xs="6" *ngFor="let preview of filePreviews; let i = index">
+      <ion-card class="position-relative">
+        <ng-container *ngIf="preview.type === 'image'">
+          <ion-img class="img" [src]="preview.data"></ion-img>
+        </ng-container>
+        <ng-container *ngIf="preview.type === 'video'">
+          <ion-img class="img" [src]="preview.data" controls width="100%" height="auto"></ion-img>
+        </ng-container>
+        <ng-container *ngIf="preview.type === 'application'">
+          <ion-img class="img" [src]="preview.data" controls width="100%" height="auto"></ion-img>
+        </ng-container>
+
+        <ion-fab-button color="secondary" size="small" class="position-absolute z-index-10 bottom-0 end-0 m-1" (click)="openDocumentationDetail(url[i])">
+          <ion-icon name="pricetag" size="small"></ion-icon>
+        </ion-fab-button>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-footer>
